@@ -85,12 +85,12 @@ const Tabs = () => {
       tabBar={(props) => <CustomTabBar props={props} />}
     >
       <Tab.Screen
-        name="Home"
-        component={Search}
+        name="Activity"
+        component={Explore}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
-              name="search"
+              name="activity"
               size={24}
               color={focused ? COLORS.white : COLORS.secondary}
             />
@@ -100,12 +100,12 @@ const Tabs = () => {
       />
 
       <Tab.Screen
-        name="Activity"
-        component={Explore}
+        name="Home"
+        component={Search}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
-              name="activity"
+              name="search"
               size={24}
               color={focused ? COLORS.white : COLORS.secondary}
             />
