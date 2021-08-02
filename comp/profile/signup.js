@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { SIZES, COLORS, FONTS } from "../../constants";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
-import firebase from "./../../firebase";
+import firebase from "../../firebase";
 
 const Signup = ({ navigation }) => {
   const [phoneNumber, setPhoneNumber] = useState("");

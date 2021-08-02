@@ -13,6 +13,7 @@
     "@react-navigation/native": "^6.0.0",
     "@react-navigation/stack": "^6.0.0",
     "expo": "~42.0.1",
+    "expo-cli": "^4.9.1",
     "expo-firebase-recaptcha": "^1.4.2",
     "expo-font": "^9.2.1",
     "expo-image-picker": "^10.2.2",

@@ -4,10 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import Tabs from "./navigation/tabs";
 import firebase_ from "./firebase";
-import Signin from "./comp/profile/Signin";
-import Signup from "./comp/profile/Signup";
 import Welcome from "./comp/Welcome";
-
 import Inquiry from "./comp/orders/Inquiry";
 import Inquiries from "./comp/orders/Inquiries";
 import { View, Text } from "react-native";

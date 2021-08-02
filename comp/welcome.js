@@ -1,7 +1,7 @@
 import React from "react";
 
 import { StyleSheet, Image, Text, View, TouchableOpacity } from "react-native";
-import { COLORS, FONTS, SIZES } from "./../constants";
+import { COLORS, FONTS, SIZES } from "../constants";
 
 const Welcome = ({ navigation }) => {
   return (
