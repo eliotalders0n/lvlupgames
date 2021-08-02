@@ -3,15 +3,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import Tabs from "./navigation/tabs";
-import firebase_ from "./firebase";
-import Signin from "./comp/profile/Signin";
-import Signup from "./comp/profile/Signup";
+import firebase_ from "./firebase"; 
 import Welcome from "./comp/Welcome";
-
 import Inquiry from "./comp/orders/Inquiry";
 import { View, Text } from "react-native";
-import updateProfile from "./comp/profile/UpdateProfile";
-import feedback from "./comp/profile/feedback";
+import feedback from "./comp/profile/Feedback";
+import Signup from "./comp/profile/Signup";
+import Signin from "./comp/profile/Signin";
 
 const Stack = createStackNavigator();
 
@@ -88,52 +86,14 @@ const App = () => {
         initialRouteName={"Home"}
       >
         <Stack.Screen name="Home" component={Tabs} />
-        <Stack.Screen
-          name="addProduct"
-          component={AddProduct}
-          options={{ headerShown: true, title: "Add Product" }}
-        />
-        <Stack.Screen
-          name="editProduct"
-          component={EditProduct}
-          options={{ headerShown: true, title: "Edit Product" }}
-        />
+        
         <Stack.Screen
           name="inquire"
           component={Inquiry}
           options={{ headerShown: true, title: "" }}
         />
-        <Stack.Screen
-          name="manageProduct"
-          component={ManageProducts}
-          options={{ headerShown: true, title: "My Products" }}
-        />
-        <Stack.Screen
-          name="viewProduct"
-          component={ViewProduct}
-          options={{ headerShown: true, title: "Produce Details" }}
-        />
-        <Stack.Screen
-          name="userProfile"
-          component={UserProfile}
-          options={{ headerShown: true, title: "Profile" }}
-        />
-        <Stack.Screen
-          name="updateProfile"
-          component={updateProfile}
-          options={{ headerShown: true, title: "Update Profile" }}
-        />
-        <Stack.Screen
-          name="Inquiries"
-          component={Inquiries}
-          options={{ headerShown: true, title: "Inquiries" }}
-        />
-        <Stack.Screen
-          name="viewProduce"
-          component={ViewProduce}
-          options={{ headerShown: true, title: "Produce Details" }}
-        />
-        <Stack.Screen
+  
+         <Stack.Screen
           name="feedback"
           component={feedback}
           options={{ headerShown: true, title: "Feedback" }}

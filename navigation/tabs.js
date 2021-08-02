@@ -7,7 +7,7 @@ import {
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { COLORS, icons } from "../constants";
 import { Feather } from "@expo/vector-icons";
-import profile from "../comp/profile/profile";
+import profile from "../comp/profile/Profile";
 import Explore from "../comp/explore/Explore";
 import Search from "../comp/search/Search.js";
 
