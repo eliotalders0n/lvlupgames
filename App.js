@@ -9,6 +9,8 @@ import Inquiry from "./comp/orders/Inquiry";
 import Inquiries from "./comp/orders/Inquiries";
 import { View, Text } from "react-native";
 import updateProfile from "./comp/profile/UpdateProfile";
+import Signup from "./comp/profile/Signup";
+import Signin from "./comp/profile/Signin";
 import UserProfile from "./comp/profile/UserProfile";
 import feedback from "./comp/profile/feedback";
 
