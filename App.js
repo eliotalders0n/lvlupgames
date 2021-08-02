@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import Tabs from "./navigation/tabs";
-import firebase_ from "./firebase-";
+import firebase_ from "./firebase";
 import Signin from "./comp/profile/Signin";
 import Signup from "./comp/profile/Signup";
 import Welcome from "./comp/Welcome";
@@ -52,6 +52,9 @@ const App = () => {
 
   if (!loggedin) {
     return (
+      // <View>
+      //   <Signup />
+      // </View>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Welcome">
           <Stack.Screen
