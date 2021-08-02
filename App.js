@@ -9,8 +9,10 @@ import Signup from "./comp/profile/Signup";
 import Welcome from "./comp/Welcome";
 
 import Inquiry from "./comp/orders/Inquiry";
+import Inquiries from "./comp/orders/Inquiries";
 import { View, Text } from "react-native";
 import updateProfile from "./comp/profile/UpdateProfile";
+import UserProfile from "./comp/profile/UserProfile";
 import feedback from "./comp/profile/feedback";
 
 const Stack = createStackNavigator();
@@ -89,29 +91,9 @@ const App = () => {
       >
         <Stack.Screen name="Home" component={Tabs} />
         <Stack.Screen
-          name="addProduct"
-          component={AddProduct}
-          options={{ headerShown: true, title: "Add Product" }}
-        />
-        <Stack.Screen
-          name="editProduct"
-          component={EditProduct}
-          options={{ headerShown: true, title: "Edit Product" }}
-        />
-        <Stack.Screen
           name="inquire"
           component={Inquiry}
           options={{ headerShown: true, title: "" }}
-        />
-        <Stack.Screen
-          name="manageProduct"
-          component={ManageProducts}
-          options={{ headerShown: true, title: "My Products" }}
-        />
-        <Stack.Screen
-          name="viewProduct"
-          component={ViewProduct}
-          options={{ headerShown: true, title: "Produce Details" }}
         />
         <Stack.Screen
           name="userProfile"
@@ -127,11 +109,6 @@ const App = () => {
           name="Inquiries"
           component={Inquiries}
           options={{ headerShown: true, title: "Inquiries" }}
-        />
-        <Stack.Screen
-          name="viewProduce"
-          component={ViewProduce}
-          options={{ headerShown: true, title: "Produce Details" }}
         />
         <Stack.Screen
           name="feedback"
