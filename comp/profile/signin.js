@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 import React, { useState, useRef } from "react";
-=======
-import React from "react";
->>>>>>> 6c06565e3457e8812456476350df480c5bf94d54
 import {
   TextInput,
   StyleSheet,
   Text,
-<<<<<<< HEAD
   View,
   TouchableOpacity,
 } from "react-native";
@@ -79,14 +74,6 @@ function Signin() {
       </TouchableOpacity>
     </View>
   );
-=======
-  ScrollView,
-  View,
-  TouchableOpacity,
-} from "react-native";
-function Signin(props) {
-  return <View></View>;
->>>>>>> 6c06565e3457e8812456476350df480c5bf94d54
 }
 
 const styles = StyleSheet.create({
