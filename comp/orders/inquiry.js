@@ -3,27 +3,27 @@ import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import firebase from "../../firebase";
 import { SIZES, FONTS, COLORS } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
-import useGetUser from "../crud/useGetUser";
+import useGetGames from "../crud/useGetGames";
 
 const Inquiry = ({ route }) => {
   const navigation = useNavigation();
   let data = route.params.data;
-  let user = useGetUser(data.u_id).docs;
-  const [bags, setBags] = useState(null);
+  let games = useGetGames(data.u_id).docs;
+  console.log(data.id);
 
   function sendInquiry() {
     let inquiry = {
-      buyer: firebase.auth().currentUser.uid,
+      gameId: data.id,
       createdAt: new Date(Date.now()).toString(),
+      userId: firebase.auth().currentUser.uid,
+      status: "pending",
+      genre: data.genre,
       price: data.price,
-      produce: data.produce,
-      quant: bags,
-      seller: data.u_id,
-      status: 0,
+      title: data.title,
     };
     firebase
       .firestore()
-      .collection("inquires")
+      .collection("inquiries")
       .add(inquiry)
       .then(() => {
         console.log("Inquiry sent");
@@ -52,12 +52,8 @@ const Inquiry = ({ route }) => {
             borderRadius: 10,
           }}
         >
-          <Text style={{ color: COLORS.white, ...FONTS.h4 }}>
-            {data.produce}
-          </Text>
-          <Text style={{ color: COLORS.white, ...FONTS.h6 }}>
-            {data.produce_category}
-          </Text>
+          <Text style={{ color: COLORS.white, ...FONTS.h4 }}>{data.title}</Text>
+          <Text style={{ color: COLORS.white, ...FONTS.h6 }}>{data.genre}</Text>
         </View>
         <View
           style={{
@@ -68,30 +64,23 @@ const Inquiry = ({ route }) => {
             borderRadius: 10,
           }}
         >
-          <Text style={{ color: COLORS.white, ...FONTS.h4 }}>{user.name}</Text>
-          <Text style={{ color: COLORS.white, ...FONTS.h6 }}>{user.type}</Text>
+          <Text style={{ color: COLORS.white, ...FONTS.h4 }}>
+            {games.title}
+          </Text>
+          <Text style={{ color: COLORS.white, ...FONTS.h6 }}>
+            {games.genre}
+          </Text>
         </View>
       </View>
       {/* <View>
                 <Text>Am offering to pay K15kwacha for 1 KG, i will need 10 bags of 5KG</Text>
             </View> */}
       <View style={{ padding: SIZES.padding }}>
-        <Text style={{ ...FONTS.h4 }}>Make offer</Text>
+        <Text style={{ ...FONTS.h4 }}>Game inquiry</Text>
         <Text>
-          My current price for 1KG of {data.produce} is ZMW {data.price} {"\n"}
+          I want to place an order for {data.title} which is at ZMW {data.price}{" "}
+          {"\n"}
         </Text>
-        <Text>How many bags of {data.produce} do you need?</Text>
-        <TextInput
-          keyboardType="number-pad"
-          placeholder="e.g. 10"
-          onChangeText={(value) => setBags(value)}
-          style={{
-            padding: SIZES.padding,
-            borderRadius: 5,
-            marginVertical: 10,
-            borderWidth: 0.2,
-          }}
-        />
       </View>
       <TouchableOpacity
         style={{
@@ -104,7 +93,7 @@ const Inquiry = ({ route }) => {
         onPress={() => sendInquiry()}
       >
         <Text style={{ color: COLORS.white, textAlign: "right", ...FONTS.h4 }}>
-          Make Offer
+          Submit request
         </Text>
       </TouchableOpacity>
     </View>

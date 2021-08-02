@@ -1,13 +1,13 @@
 import React from "react";
-import firebase from "../..//firebase";
+import firebase from "../../firebase";
 
-const useGetAllProducts = () => {
+const useGetGames = () => {
   const [docs, setDocs] = React.useState([]);
 
   React.useEffect(() => {
     firebase
       .firestore()
-      .collection("products")
+      .collection("games")
       .onSnapshot((snap) => {
         let data = [];
         snap.docs.forEach((e) => {
@@ -23,4 +23,4 @@ const useGetAllProducts = () => {
   return { docs };
 };
 
-export default useGetAllProducts;
+export default useGetGames;

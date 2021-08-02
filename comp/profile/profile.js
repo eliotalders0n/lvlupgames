@@ -84,7 +84,8 @@ function profile() {
               fontWeight: "900",
             }}
           >
-            {user && user.createdAt}
+            Date Created
+            {/* {user && user.createdAt} */}
           </Text>
         </View>
       </View>
@@ -162,18 +163,30 @@ function profile() {
             backgroundColor: COLORS.black,
           }}
         >
-          <Text
+          <TouchableOpacity
+            onPress={() => navigation.navigate("AddGames", { user })}
             style={{
-              color: COLORS.white,
-              ...FONTS.h4,
-              padding: SIZES.padding * 4,
-              textAlign: "center",
-              fontWeight: "900",
+              flex: 1,
+              marginHorizontal: 5,
+              borderRadius: 10,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: COLORS.black,
             }}
           >
-            <Feather name="info" size={24} color="white" />
-            {"\n\n"}About LVLUPGAMES
-          </Text>
+            <Text
+              style={{
+                color: COLORS.white,
+                ...FONTS.h4,
+                padding: SIZES.padding * 4,
+                textAlign: "center",
+                fontWeight: "900",
+              }}
+            >
+              <Feather name="bell" size={24} color="white" />
+              {"\n\n"}Add Games
+            </Text>
+          </TouchableOpacity>
         </View>
         <TouchableOpacity
           onPress={() => navigation.navigate("feedback", { user })}

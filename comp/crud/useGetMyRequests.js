@@ -1,9 +1,8 @@
 import React from "react";
 import firebase from "../..//firebase";
 
-const useGetInquiries = (id) => {
+function useGetMyRequests() {
   const [docs, setDocs] = React.useState([]);
-  // console.log(user);
 
   React.useEffect(() => {
     firebase
@@ -22,6 +21,6 @@ const useGetInquiries = (id) => {
       });
   }, []);
   return { docs };
-};
+}
 
-export default useGetInquiries;
+export default useGetMyRequests;
