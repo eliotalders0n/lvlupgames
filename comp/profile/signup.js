@@ -43,12 +43,16 @@ const Signup = ({ navigation }) => {
         let userId = firebase.auth().currentUser.uid;
 
         const firestore = firebase.firestore();
-        firestore.collection("users").doc(userId).set({
-          name: name,
-          gender: gender,
-          province: province,
-          phone: phoneNumber,
-        });
+        firestore
+          .collection("users")
+          .doc(userId)
+          .set({
+            name: name,
+            gender: gender,
+            province: province,
+            phone: phoneNumber,
+            createdAt: new Date(Date.now()).toString(),
+          });
         console.log(userId);
       });
   };

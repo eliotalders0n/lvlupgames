@@ -6,11 +6,13 @@ import { COLORS, FONTS, SIZES } from "../constants";
 const Welcome = ({ navigation }) => {
   return (
     <View style={styles.container}>
-       <Text style={styles.txth1}>Welcome!</Text>
+      {/* <ImageBackground source={image} style={styles.bgimage}> */}
+      <Image source={require("./../assets/img.png")} style={styles.image} />
+      <Text style={styles.txth1}>Welcome!</Text>
       <Text style={styles.txth2}>
         {" "}
-        Farming should be easy and convenient and thats why we believe this
-        platform is the best place for you.
+        Game your way, drop off your console or storage device and pick it up
+        with a game of your choice.
       </Text>
       {/* </ImageBackground> */}
       <View style={styles.miniContainer}>

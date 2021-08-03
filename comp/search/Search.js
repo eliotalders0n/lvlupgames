@@ -1,49 +1,143 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
-  TextInput,
-  StyleSheet,
   Text,
-  ScrollView,
   View,
   TouchableOpacity,
+  Image,
+  FlatList,
+  ScrollView,
 } from "react-native";
-import { SIZES, COLORS, FONTS } from "../../constants";
-import * as Notifications from 'expo-notifications'
-import * as Permissions from 'expo-permissions'
-import firebase from './../../firebase'
-import useGetUser from "../crud/useGetUser";
+import firebase from "./../../firebase";
+import { SIZES, FONTS, COLORS } from "../../constants";
+import useGetFarmers from "../crud/useGetFamers";
+import { useNavigation } from "@react-navigation/native";
+import useGetCategories from "../crud/useGetCategories";
+import useGetGames from "../crud/useGetGames";
 
-function Search() {
+function Explore() {
+  let farmers = useGetFarmers().docs;
+  let categories = useGetCategories().docs;
+  const navigation = useNavigation();
 
-  
-  let user_id = firebase.auth().currentUser.uid
-  let user = useGetUser(user_id).docs
-  const [tkn, setToken] = useState()
-      useEffect(() => {
-      user.token === null ? regsiterForPush().then(token=>console.log(token)).catch((err)=>console.log(err)) : null
-      }, [])
-      
-          async function regsiterForPush(){
-            const{status} = await Permissions.getAsync(Permissions.NOTIFICATIONS)
-            if(status !='granted'){
-              const{status} = await Permissions.askAsync(Permissions.NOTIFICATIONS)
-            }
-            if(status !='granted'){
-              alert("failed")
-              return
-            }
-            token = (await Notification.getExpoPushTokenAsync()).data
-            setToken(token)
-            firebase.firestore().collection("users").doc(user_id).update({token:token}).then(()=>console.log("done"))
-            return token
-          }
+  let games = useGetGames().docs;
 
-      return (
+  const renderFarmers = ({ item }) => (
+    <TouchableOpacity
+      onPress={() => navigation.navigate("userProfile", { item })}
+      style={{
+        paddingVertical: 15,
+        marginVertical: 5,
+        marginHorizontal: 5,
+        paddingHorizontal: 0,
+        justifyContent: "center",
+        alignItems: "center",
+        borderColor: COLORS.secondary,
+        borderRadius: 10,
+        backgroundColor: COLORS.black,
+      }}
+    >
       <View>
-
-
+        <Text
+          style={{ paddingHorizontal: 20, color: COLORS.white, ...FONTS.h4 }}
+        >
+          {item.name}
+        </Text>
+        <Text
+          style={{
+            paddingHorizontal: 20,
+            borderRadius: 10,
+            color: COLORS.secondary,
+            ...FONTS.h5,
+          }}
+        >
+          {item.type}
+        </Text>
       </View>
-      );
+    </TouchableOpacity>
+  );
+
+  const renderCategories = ({ item }) => (
+    <TouchableOpacity
+      onPress={() => navigation.navigate("viewGames", { item })}
+      key={item.id}
+      style={{
+        paddingVertical: 10,
+        height: 280,
+        borderRadius: 10,
+        margin: 5,
+        backgroundColor: COLORS.white,
+      }}
+    >
+      <Image
+        style={{
+          width: "100%",
+          height: 220,
+          borderRadius: 10,
+          resizeMode: "cover",
+        }}
+        source={{
+          uri: item.poster,
+        }}
+      />
+      <View
+        style={{
+          width: "70%",
+          marginTop: -20,
+          paddingVertical: 10,
+          marginLeft: 10,
+          borderRadius: 10,
+          backgroundColor: COLORS.black,
+        }}
+      >
+        <Text
+          style={{ paddingHorizontal: 20, ...FONTS.h5, color: COLORS.white }}
+        >
+          {item.title}
+        </Text>
+        <Text
+          style={{ paddingHorizontal: 20, ...FONTS.h6, color: COLORS.white }}
+        >
+          Download Size:{} {item.downloadSize} GB
+        </Text>
+        <Text
+          style={{
+            paddingHorizontal: 20,
+            ...FONTS.h6,
+            color: COLORS.secondary,
+          }}
+        >
+          Price: {item.price}
+        </Text>
+      </View>
+    </TouchableOpacity>
+  );
+
+  return (
+    <ScrollView>
+      <View
+        style={{
+          padding: SIZES.padding * 2,
+          height: "100%",
+          backgroundColor: COLORS.white,
+        }}
+      >
+        <Text style={{ ...FONTS.h2, padding: SIZES.padding }}>Search</Text>
+        <View style={{ marginTop: 30 }}>
+          <Text style={{ ...FONTS.h4 }}>Just Added</Text>
+          {games && (
+            <FlatList
+              data={games}
+              vertical
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item) => `${item.id}`}
+              renderItem={renderCategories}
+              contentContainerStyle={{}}
+            />
+          )}
+        </View>
+      </View>
+    </ScrollView>
+  );
 }
 
-export default Search;
+export default Explore;
