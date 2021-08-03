@@ -6,9 +6,7 @@ import { COLORS, FONTS, SIZES } from "../constants";
 const Welcome = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      {/* <ImageBackground source={image} style={styles.bgimage}> */}
-      {/* <Image source={require("./../../assets/img.png")} style={styles.image} /> */}
-      <Text style={styles.txth1}>Welcome!</Text>
+       <Text style={styles.txth1}>Welcome!</Text>
       <Text style={styles.txth2}>
         {" "}
         Farming should be easy and convenient and thats why we believe this
@@ -19,15 +17,13 @@ const Welcome = ({ navigation }) => {
         <TouchableOpacity
           style={styles.button1}
           onPress={() => navigation.navigate("Register")}
-        >
-          <Text style={{ textAlign: "left" }}>Sign up</Text>
+        ><Text style={{ textAlign: "left" }}>Sign up</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button2}
           onPress={() => navigation.navigate("Login")}
-        >
-          <Text style={styles.buttonText}>Log in</Text>
+        ><Text style={styles.buttonText}>Log in</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -9,7 +9,7 @@ import { COLORS, icons } from "../constants";
 import { Feather } from "@expo/vector-icons";
 import profile from "../comp/profile/Profile";
 import Explore from "../comp/explore/Explore";
-import Search from "../comp/search/Search.js";
+import Search from "../comp/search/Search";
 
 const Tab = createBottomTabNavigator();
 

@@ -7,7 +7,7 @@ const useGetAllProducts = () => {
   React.useEffect(() => {
     firebase
       .firestore()
-      .collection("products")
+      .collection("games")
       .onSnapshot((snap) => {
         let data = [];
         snap.docs.forEach((e) => {

@@ -8,11 +8,10 @@ import Welcome from "./comp/Welcome";
 import Inquiry from "./comp/orders/Inquiry";
 import Inquiries from "./comp/orders/Inquiries";
 import { View, Text } from "react-native";
-import updateProfile from "./comp/profile/UpdateProfile";
 import Signup from "./comp/profile/Signup";
 import Signin from "./comp/profile/Signin";
 import UserProfile from "./comp/profile/UserProfile";
-import feedback from "./comp/profile/feedback";
+import feedback from "./comp/profile/Feedback";
 
 const Stack = createStackNavigator();
 
@@ -78,9 +77,7 @@ const App = () => {
     );
   }
   return (
-    // <View>
-    //   <updateProfile />
-    // </View>
+
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
@@ -98,11 +95,6 @@ const App = () => {
           name="userProfile"
           component={UserProfile}
           options={{ headerShown: true, title: "Profile" }}
-        />
-        <Stack.Screen
-          name="updateProfile"
-          component={updateProfile}
-          options={{ headerShown: true, title: "Update Profile" }}
         />
         <Stack.Screen
           name="Inquiries"
