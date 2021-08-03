@@ -19,6 +19,87 @@ function profile() {
       });
   };
 
+  const renderAddGame = () => {
+    console.log("this is admin");
+    if (user.accType == "admin") {
+      return (
+        <View
+          style={{
+            flex: 1,
+            marginHorizontal: 5,
+            borderRadius: 10,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: COLORS.black,
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => navigation.navigate("AddGames", { user })}
+            style={{
+              flex: 1,
+              marginHorizontal: 5,
+              borderRadius: 10,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: COLORS.black,
+            }}
+          >
+            <Text
+              style={{
+                color: COLORS.white,
+                ...FONTS.h4,
+                padding: SIZES.padding * 4,
+                textAlign: "center",
+                fontWeight: "900",
+              }}
+            >
+              <Feather name="bell" size={24} color="white" />
+              {"\n\n"}Add Games
+            </Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else {
+      return (
+        <View
+          style={{
+            flex: 1,
+            marginHorizontal: 5,
+            borderRadius: 10,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: COLORS.black,
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => navigation.navigate("ComingSoon", { user })}
+            style={{
+              flex: 1,
+              marginHorizontal: 5,
+              borderRadius: 10,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: COLORS.black,
+            }}
+          >
+            <Text
+              style={{
+                color: COLORS.white,
+                ...FONTS.h4,
+                padding: SIZES.padding * 4,
+                textAlign: "center",
+                fontWeight: "900",
+              }}
+            >
+              <Feather name="bell" size={24} color="white" />
+              {"\n\n"}Coming Soon
+            </Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+  };
+
   return (
     <ScrollView
       style={{
@@ -163,30 +244,7 @@ function profile() {
             backgroundColor: COLORS.black,
           }}
         >
-          <TouchableOpacity
-            onPress={() => navigation.navigate("AddGames", { user })}
-            style={{
-              flex: 1,
-              marginHorizontal: 5,
-              borderRadius: 10,
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: COLORS.black,
-            }}
-          >
-            <Text
-              style={{
-                color: COLORS.white,
-                ...FONTS.h4,
-                padding: SIZES.padding * 4,
-                textAlign: "center",
-                fontWeight: "900",
-              }}
-            >
-              <Feather name="bell" size={24} color="white" />
-              {"\n\n"}Add Games
-            </Text>
-          </TouchableOpacity>
+          {renderAddGame()}
         </View>
         <TouchableOpacity
           onPress={() => navigation.navigate("feedback", { user })}

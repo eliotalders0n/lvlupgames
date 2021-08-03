@@ -15,13 +15,14 @@ import UserProfile from "./comp/profile/UserProfile";
 import feedback from "./comp/profile/feedback";
 import viewGames from "./comp/explore/viewGames";
 import AddGames from "./comp/profile/AddGames";
+import useGetUser from "./comp/crud/useGetUser";
+import ComingSoon from "./comp/profile/ComingSoon";
 
 const Stack = createStackNavigator();
 
 const App = () => {
   const [loaded_, setLoaded] = useState(false);
   const [loggedin, setLoggedin] = useState(false);
-
   useEffect(() => {
     firebase_.auth().onAuthStateChanged((user) => {
       if (!user) {
@@ -120,6 +121,11 @@ const App = () => {
           name="AddGames"
           component={AddGames}
           options={{ headerShown: true, title: "Add Game" }}
+        />
+        <Stack.Screen
+          name="ComingSoon"
+          component={ComingSoon}
+          options={{ headerShown: true, title: "Coming Soon" }}
         />
         <Stack.Screen
           name="feedback"
