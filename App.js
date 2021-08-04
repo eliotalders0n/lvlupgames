@@ -14,7 +14,7 @@ import feedback from "./comp/profile/Feedback";
 import viewGames from "./comp/explore/ViewGames";
 import AddGames from "./comp/profile/AddGames";
 
-import updateProfile from "./comp/profile/updateProfile";
+import updateProfile from "./comp/profile/UpdateProfile";
 
 const Stack = createStackNavigator();
 
