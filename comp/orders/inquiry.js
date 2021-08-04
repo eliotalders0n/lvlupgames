@@ -9,18 +9,27 @@ const Inquiry = ({ route }) => {
   const navigation = useNavigation();
   let data = route.params.data;
   let games = useGetGames(data.u_id).docs;
+  let orders = 0;
+  let userId = firebase.auth().currentUser.uid;
   console.log(data.id);
+
+  if (order == 3) {
+    console.log("maximum reached");
+  }
 
   function sendInquiry() {
     let inquiry = {
       gameId: data.id,
       createdAt: new Date(Date.now()).toString(),
-      userId: firebase.auth().currentUser.uid,
+      userId: userId,
       status: "pending",
       genre: data.genre,
       price: data.price,
       title: data.title,
+      ordersPerUser: orders,
     };
+    //  limit number of inquiries
+
     firebase
       .firestore()
       .collection("inquiries")
