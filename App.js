@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import Tabs from "./navigation/tabs";
-import firebase_ from "./firebase";
+import firebase from "./firebase";
 import Welcome from "./comp/Welcome";
 import Inquiry from "./comp/orders/Inquiry";
 import Inquiries from "./comp/orders/Inquiries";
@@ -14,7 +14,7 @@ import UserProfile from "./comp/profile/UserProfile";
 import feedback from "./comp/profile/Feedback";
 import viewGames from "./comp/explore/ViewGames";
 import AddGames from "./comp/profile/AddGames";
-import useGetUser from "./comp/crud/useGetUser";
+// import useGetUser from "./comp/crud/useGetUser";
 import ComingSoon from "./comp/profile/ComingSoon";
 
 const Stack = createStackNavigator();
@@ -23,7 +23,7 @@ const App = () => {
   const [loaded_, setLoaded] = useState(false);
   const [loggedin, setLoggedin] = useState(false);
   useEffect(() => {
-    firebase_.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged((user) => {
       if (!user) {
         setLoaded(true);
         setLoggedin(false);

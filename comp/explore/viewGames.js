@@ -47,94 +47,96 @@ const viewGames = ({ route }) => {
   );
 
   return (
-    <ScrollView style={{ backgroundColor: COLORS.white }}>
+    // <ScrollView style={{ backgroundColor: COLORS.white }}>
+    <View
+      style={{
+        backgroundColor: COLORS.white,
+        flex: 1,
+        padding: SIZES.padding * 2,
+      }}
+    >
       <View
         style={{
+          paddingTop: 10,
+          marginHorizontal: 20,
+          marginTop: 20,
           backgroundColor: COLORS.white,
-          flex: 1,
-          padding: SIZES.padding * 2,
+          borderRadius: 10,
         }}
       >
-        <View
+        <Image
           style={{
-            paddingTop: 10,
-            marginHorizontal: 20,
-            marginTop: -30,
-            backgroundColor: COLORS.white,
+            marginLeft: "20%",
+            marginBottom: 0,
+            width: "60%",
+            height: "70%",
             borderRadius: 10,
+            resizeMode: "contain",
           }}
-        >
-          <Image
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: 10,
-              resizeMode: "cover",
-            }}
-            source={{
-              uri: data.poster,
-            }}
-          />
-        </View>
-        <Text
+          source={{
+            uri: data.poster,
+          }}
+        />
+      </View>
+      <Text
+        style={{
+          color: COLORS.black,
+          ...FONTS.h2,
+          textAlign: "center",
+          fontWeight: "900",
+        }}
+      >
+        {data.createdAt}
+      </Text>
+      <Text
+        style={{
+          color: COLORS.secondary,
+          ...FONTS.h4,
+          textAlign: "center",
+        }}
+      >
+        {data.title}
+      </Text>
+      <Text
+        style={{ color: COLORS.darkgray, ...FONTS.h6, textAlign: "center" }}
+      >
+        {data.downloadSize}
+      </Text>
+      <Text
+        style={{ color: COLORS.darkgray, ...FONTS.h6, textAlign: "center" }}
+      >
+        {data.genre}
+      </Text>
+      <Text
+        style={{ color: COLORS.darkgray, ...FONTS.h6, textAlign: "center" }}
+      >
+        {data.price}
+      </Text>
+      <View style={{ flexDirection: "row", marginVertical: 20 }}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("inquire", { data })}
           style={{
-            color: COLORS.black,
-            ...FONTS.h2,
-            textAlign: "center",
-            fontWeight: "900",
+            flex: 1,
+            borderRadius: 10,
+            backgroundColor: COLORS.secondary,
+            marginHorizontal: 5,
           }}
         >
-          {data.createdAt}
-        </Text>
-        <Text
-          style={{
-            color: COLORS.secondary,
-            ...FONTS.h4,
-            textAlign: "center",
-          }}
-        >
-          {data.title}
-        </Text>
-        <Text
-          style={{ color: COLORS.darkgray, ...FONTS.h6, textAlign: "center" }}
-        >
-          {data.downloadSize}
-        </Text>
-        <Text
-          style={{ color: COLORS.darkgray, ...FONTS.h6, textAlign: "center" }}
-        >
-          {data.genre}
-        </Text>
-        <Text
-          style={{ color: COLORS.darkgray, ...FONTS.h6, textAlign: "center" }}
-        >
-          {data.price}
-        </Text>
-        <View style={{ flexDirection: "row", marginVertical: 20 }}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("inquire", { data })}
+          <Text
             style={{
-              flex: 1,
-              borderRadius: 10,
-              backgroundColor: COLORS.secondary,
-              marginHorizontal: 5,
+              color: COLORS.white,
+              ...FONTS.h5,
+              padding: SIZES.padding * 2,
+              textAlign: "center",
             }}
           >
-            <Text
-              style={{
-                color: COLORS.white,
-                ...FONTS.h5,
-                padding: SIZES.padding * 2,
-                textAlign: "center",
-              }}
-            >
-              Inquire
-            </Text>
-            {/* need to make this change depending on whether the current user is the one that uploaded it. */}
-          </TouchableOpacity>
-        </View>
+            Inquire
+          </Text>
+          {/* need to make this change depending on whether the current user is the one that uploaded it. */}
+        </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
+    // </ScrollView>
   );
 };
 
