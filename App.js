@@ -10,7 +10,6 @@ import Inquiries from "./comp/orders/Inquiries";
 import { View, Text } from "react-native";
 import Signup from "./comp/profile/Signup";
 import Signin from "./comp/profile/Signin";
-
 import feedback from "./comp/profile/Feedback";
 import viewGames from "./comp/explore/ViewGames";
 import AddGames from "./comp/profile/AddGames";
@@ -80,7 +79,6 @@ const App = () => {
     );
   }
   return (
-
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
@@ -94,7 +92,7 @@ const App = () => {
           component={Inquiry}
           options={{ headerShown: true, title: "" }}
         />
- 
+
         <Stack.Screen
           name="Inquiries"
           component={Inquiries}
