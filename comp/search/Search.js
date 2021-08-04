@@ -7,55 +7,14 @@ import {
   FlatList,
   ScrollView,
 } from "react-native";
-import firebase from "./../../firebase";
 import { SIZES, FONTS, COLORS } from "../../constants";
-import useGetFarmers from "../crud/useGetFamers";
 import { useNavigation } from "@react-navigation/native";
-import useGetCategories from "../crud/useGetCategories";
 import useGetGames from "../crud/useGetGames";
 
 function Explore() {
-  let farmers = useGetFarmers().docs;
-  let categories = useGetCategories().docs;
   const navigation = useNavigation();
-
-  let games = useGetGames().docs;
-
-  const renderFarmers = ({ item }) => (
-    <TouchableOpacity
-      onPress={() => navigation.navigate("userProfile", { item })}
-      style={{
-        paddingVertical: 15,
-        marginVertical: 5,
-        marginHorizontal: 5,
-        paddingHorizontal: 0,
-        justifyContent: "center",
-        alignItems: "center",
-        borderColor: COLORS.secondary,
-        borderRadius: 10,
-        backgroundColor: COLORS.black,
-      }}
-    >
-      <View>
-        <Text
-          style={{ paddingHorizontal: 20, color: COLORS.white, ...FONTS.h4 }}
-        >
-          {item.name}
-        </Text>
-        <Text
-          style={{
-            paddingHorizontal: 20,
-            borderRadius: 10,
-            color: COLORS.secondary,
-            ...FONTS.h5,
-          }}
-        >
-          {item.type}
-        </Text>
-      </View>
-    </TouchableOpacity>
-  );
-
+  let games = useGetGames(1).docs;
+  
   const renderCategories = ({ item }) => (
     <TouchableOpacity
       onPress={() => navigation.navigate("viewGames", { item })}
@@ -67,8 +26,7 @@ function Explore() {
         margin: 5,
         backgroundColor: COLORS.white,
       }}
-    >
-      <Image
+    ><Image
         style={{
           width: "100%",
           height: 220,
@@ -81,34 +39,32 @@ function Explore() {
       />
       <View
         style={{
-          width: "70%",
+          width: "100%",
           marginTop: -20,
           paddingVertical: 10,
-          marginLeft: 10,
+          marginLeft: 0,
           borderRadius: 10,
-          backgroundColor: COLORS.black,
+          backgroundColor: COLORS.white,
         }}
-      >
-        <Text
-          style={{ paddingHorizontal: 20, ...FONTS.h5, color: COLORS.white }}
-        >
-          {item.title}
+      ><Text
+          style={{ paddingHorizontal: 20, ...FONTS.h5, color: COLORS.black }}
+        >{item.title}
         </Text>
+        <View style={{flexDirection:"row"}}>
         <Text
-          style={{ paddingHorizontal: 20, ...FONTS.h6, color: COLORS.white }}
-        >
-          Download Size:{} {item.downloadSize} GB
+          style={{ paddingHorizontal: 20, flex:1, ...FONTS.h6, color: COLORS.black }}
+        >{item.downloadSize} GB
         </Text>
         <Text
           style={{
             paddingHorizontal: 20,
-            ...FONTS.h6,
+            ...FONTS.h6, flex:1, textAlign:"right",
             color: COLORS.secondary,
           }}
-        >
-          Price: {item.price}
+        >ZMW {item.price}
         </Text>
-      </View>
+        </View>
+        </View>
     </TouchableOpacity>
   );
 
@@ -119,12 +75,12 @@ function Explore() {
           padding: SIZES.padding * 2,
           height: "100%",
           backgroundColor: COLORS.white,
+          marginBottom:90
         }}
-      >
-        <Text style={{ ...FONTS.h2, padding: SIZES.padding }}>Search</Text>
+      ><Text style={{ ...FONTS.h2, padding: SIZES.padding }}>LVLUP </Text>
+        <Text style={{...FONTS.h5, color:COLORS.primary, paddingHorizontal:SIZES.padding}}>What game are you downloading today?</Text>
         <View style={{ marginTop: 30 }}>
-          <Text style={{ ...FONTS.h4 }}>Just Added</Text>
-          {games && (
+            {games && (
             <FlatList
               data={games}
               vertical

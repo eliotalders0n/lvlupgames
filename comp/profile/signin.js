@@ -57,9 +57,21 @@ function Signin() {
         onChangeText={setPhoneNumber}
       />
 
-      <TouchableOpacity style={styles.buttonLogin_} onPress={sendVerification}>
-        <Text style={styles.buttonLoginText}>Get OTP </Text>
+<TouchableOpacity
+        style={{
+          backgroundColor: COLORS.secondary,
+          marginBottom: 0,
+          marginTop: 0,
+          borderRadius: 10,
+          paddingHorizontal: 30,
+          paddingVertical: 20,
+        }}
+        onPress={() => sendVerification()}
+      ><Text style={{ color: COLORS.white, textAlign: "right", ...FONTS.h4 }}>
+         Get OTP(One Time Pin)
+        </Text>
       </TouchableOpacity>
+    
       <View style={{ height: 20 }}></View>
       <TextInput
         // value="OTP"
@@ -69,9 +81,21 @@ function Signin() {
         onChangeText={setCode}
         style={styles.input}
       />
-      <TouchableOpacity style={styles.buttonLogin} onPress={confirmCode}>
-        <Text style={styles.buttonText}>Login</Text>
+            <TouchableOpacity
+        style={{
+          backgroundColor: COLORS.black,
+          marginBottom: 20,
+          marginTop: 40,
+          borderRadius: 10,
+          paddingHorizontal: 30,
+          paddingVertical: 20,
+        }}
+        onPress={() => confirmCode()}
+      ><Text style={{ color: COLORS.white, textAlign: "right", ...FONTS.h4 }}>
+         Login
+        </Text>
       </TouchableOpacity>
+     
     </View>
   );
 }
@@ -100,7 +124,7 @@ const styles = StyleSheet.create({
   },
   titleText2: {
     marginBottom: 80,
-    fontSize: 22,
+   ...FONTS.h2,
     color: "black",
   },
   buttonText: {

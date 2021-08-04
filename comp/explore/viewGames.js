@@ -15,8 +15,8 @@ import useGetGames from "../crud/useGetGames";
 
 const viewGames = ({ route }) => {
   let data = route.params.item;
-
-  let item = useGetGames(data.u_id).docs;
+  let userId = firebase.auth().currentUser.uid
+//  let item = useGetGames(data.u_id).docs;
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -28,26 +28,34 @@ const viewGames = ({ route }) => {
         views: firebase.firestore.FieldValue.increment(1),
       });
   }, []);
+ 
+  function sendInquiry() {
+    let inquiry = {
+      gameId: data.id,
+      createdAt: new Date(Date.now()).toString(),
+      userId: userId,
+      status: "pending",
+      genre: data.genre,
+      price: data.downloadSize *6,
+      title: data.title,     
+    };
+    //  limit number of inquiries
 
-  const renderItem = ({ item }) => (
-    <TouchableOpacity
-      style={{
-        paddingVertical: 10,
-        borderRadius: 10,
-        backgroundColor: COLORS.white,
-      }}
-    >
-      <Image
-        style={{ flex: 1, height: 220, borderRadius: 10, resizeMode: "cover" }}
-        source={{
-          uri: item,
-        }}
-      />
-    </TouchableOpacity>
-  );
+    firebase
+      .firestore()
+      .collection("inquiries")
+      .add(inquiry)
+      .then(() => {
+        console.log("Inquiry sent");
+        navigation.goBack();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
 
   return (
-    // <ScrollView style={{ backgroundColor: COLORS.white }}>
     <View
       style={{
         backgroundColor: COLORS.white,
@@ -55,82 +63,58 @@ const viewGames = ({ route }) => {
         padding: SIZES.padding * 2,
       }}
     >
-      <View
-        style={{
-          paddingTop: 10,
-          marginHorizontal: 20,
-          marginTop: 20,
-          backgroundColor: COLORS.white,
-          borderRadius: 10,
-        }}
-      >
-        <Image
+      <View style={{justifyCOntent:"center", alignItems:"center", borderRadius:10}}><Image
           style={{
-            marginLeft: "20%",
-            marginBottom: 0,
-            width: "60%",
-            height: "70%",
+            width: "75%",
+            height:SIZES.height/2,
             borderRadius: 10,
             resizeMode: "contain",
           }}
           source={{
             uri: data.poster,
           }}
-        />
-      </View>
-      <Text
-        style={{
-          color: COLORS.black,
-          ...FONTS.h2,
-          textAlign: "center",
-          fontWeight: "900",
-        }}
-      >
-        {data.createdAt}
-      </Text>
-      <Text
+        /></View>
+        <Text
         style={{
           color: COLORS.secondary,
-          ...FONTS.h4,
+          ...FONTS.h2,
           textAlign: "center",
         }}
-      >
-        {data.title}
+      >{data.title}
+      </Text>
+      <View style={{flexDirection:"row"}}>
+      <Text
+        style={{ color: COLORS.darkgray, ...FONTS.h4, flex:1, textAlign: "center" }}
+      >{data.downloadSize} GB
       </Text>
       <Text
-        style={{ color: COLORS.darkgray, ...FONTS.h6, textAlign: "center" }}
-      >
-        {data.downloadSize}
+        style={{ color: COLORS.darkgray, ...FONTS.h4, flex:1, textAlign: "center" }}
+      >{data.genre}
       </Text>
+      </View>
+    
       <Text
-        style={{ color: COLORS.darkgray, ...FONTS.h6, textAlign: "center" }}
+        style={{ color: COLORS.darkgray, ...FONTS.h5, textAlign: "center" }}
       >
-        {data.genre}
-      </Text>
-      <Text
-        style={{ color: COLORS.darkgray, ...FONTS.h6, textAlign: "center" }}
-      >
-        {data.price}
+       ZMW {data.price}
       </Text>
       <View style={{ flexDirection: "row", marginVertical: 20 }}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("inquire", { data })}
+          onPress={() => sendInquiry()}
           style={{
             flex: 1,
             borderRadius: 10,
             backgroundColor: COLORS.secondary,
             marginHorizontal: 5,
           }}
-        >
-          <Text
+        ><Text
             style={{
               color: COLORS.white,
-              ...FONTS.h5,
+              ...FONTS.h4,
               padding: SIZES.padding * 2,
               textAlign: "center",
             }}
-          >
-            Inquire
+          >Send Request
           </Text>
           {/* need to make this change depending on whether the current user is the one that uploaded it. */}
         </TouchableOpacity>

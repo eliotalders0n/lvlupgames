@@ -8,7 +8,7 @@ const useGetInquiries = (id) => {
   React.useEffect(() => {
     firebase
       .firestore()
-      .collection("inquiries")
+      .collection("inquiries").where("userId", "==", firebase.auth().currentUser.uid)
       .onSnapshot((snap) => {
         let data = [];
         snap.docs.forEach((e) => {

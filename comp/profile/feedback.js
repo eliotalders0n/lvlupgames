@@ -63,8 +63,7 @@ function Feedback() {
           paddingVertical: 20,
         }}
         onPress={() => send()}
-      >
-        <Text style={{ color: COLORS.white, textAlign: "right", ...FONTS.h4 }}>
+      ><Text style={{ color: COLORS.white, textAlign: "right", ...FONTS.h4 }}>
           Send Feedback
         </Text>
       </TouchableOpacity>

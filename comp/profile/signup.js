@@ -113,10 +113,21 @@ const Signup = ({ navigation }) => {
         style={styles.input}
         onChangeText={setPhoneNumber}
       />
-
-      <TouchableOpacity style={styles.buttonLogin} onPress={sendVerification}>
-        <Text style={styles.buttonText}>Get OTP</Text>
+<TouchableOpacity
+        style={{
+          backgroundColor: COLORS.secondary,
+          marginBottom: 20,
+          marginTop: 40,
+          borderRadius: 10,
+          paddingHorizontal: 30,
+          paddingVertical: 20,
+        }}
+        onPress={() => sendVerification()}
+      ><Text style={{ color: COLORS.white, textAlign: "right", ...FONTS.h4 }}>
+         Get OTP(One Time Pin)
+        </Text>
       </TouchableOpacity>
+      
       <View style={{ height: 20 }}></View>
       <TextInput
         // value="OTP"
@@ -126,10 +137,21 @@ const Signup = ({ navigation }) => {
         onChangeText={setCode}
         style={styles.input}
       />
-
-      <TouchableOpacity style={styles.buttonLogin} onPress={confirmCode}>
-        <Text style={styles.buttonText}>Register</Text>
+<TouchableOpacity
+        style={{
+          backgroundColor: COLORS.black,
+          marginBottom: 20,
+          marginTop: 40,
+          borderRadius: 10,
+          paddingHorizontal: 30,
+          paddingVertical: 20,
+        }}
+        onPress={() => confirmCode()}
+      ><Text style={{ color: COLORS.white, textAlign: "right", ...FONTS.h4 }}>
+         Register
+        </Text>
       </TouchableOpacity>
+       
       <TouchableOpacity
         style={styles.buttonLogin_}
         onPress={() => navigation.navigate("Login")}

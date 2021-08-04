@@ -10,12 +10,12 @@ import Inquiries from "./comp/orders/Inquiries";
 import { View, Text } from "react-native";
 import Signup from "./comp/profile/Signup";
 import Signin from "./comp/profile/Signin";
-import UserProfile from "./comp/profile/UserProfile";
+
 import feedback from "./comp/profile/Feedback";
 import viewGames from "./comp/explore/ViewGames";
 import AddGames from "./comp/profile/AddGames";
-// import useGetUser from "./comp/crud/useGetUser";
-import ComingSoon from "./comp/profile/ComingSoon";
+
+import updateProfile from "./comp/profile/updateProfile";
 
 const Stack = createStackNavigator();
 
@@ -35,10 +35,10 @@ const App = () => {
   }, []);
 
   const [loaded] = useFonts({
-    "Roboto-Black": require("./assets/fonts/Roboto-Black.ttf"),
-    "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
-    "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
-    "Roboto-Light": require("./assets/fonts/Roboto-Light.ttf"),
+    "Roboto-Black": require("./assets/fonts/Poppins-Black.ttf"),
+    "Roboto-Bold": require("./assets/fonts/Poppins-Bold.ttf"),
+    "Roboto-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
+    "Roboto-Light": require("./assets/fonts/Poppins-Light.ttf"),
   });
 
   if (!loaded) {
@@ -94,11 +94,7 @@ const App = () => {
           component={Inquiry}
           options={{ headerShown: true, title: "" }}
         />
-        <Stack.Screen
-          name="userProfile"
-          component={UserProfile}
-          options={{ headerShown: true, title: "Profile" }}
-        />
+ 
         <Stack.Screen
           name="Inquiries"
           component={Inquiries}
@@ -115,9 +111,9 @@ const App = () => {
           options={{ headerShown: true, title: "Add Game" }}
         />
         <Stack.Screen
-          name="ComingSoon"
-          component={ComingSoon}
-          options={{ headerShown: true, title: "Coming Soon" }}
+          name="updateProfile"
+          component={updateProfile}
+          options={{ headerShown: true, title: "Update profile" }}
         />
         <Stack.Screen
           name="feedback"

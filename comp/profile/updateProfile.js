@@ -44,18 +44,8 @@ const updateProfile = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require("./../../assets/profile.png")}
-        style={styles.image}
-      />
-      <Text style={styles.txth1}>Lets update your profile</Text>
-      <Text style={styles.txth2}>
-        {" "}
-        Feel free to edit and update your profile, infact we encourage it.
-      </Text>
-      <View style={styles.detailsContainer}>
-        <View style={styles.personalContainer}>
-          <Text style={styles.txth3}>Full Name</Text>
+         
+         <Text style={styles.txth3}>Full Name</Text>
           <TextInput
             keyboardType="default"
             placeholder="Variant Tembo"
@@ -64,8 +54,7 @@ const updateProfile = ({ route }) => {
             autoCompleteType="name"
             onChangeText={setname}
             defaultValue={user && user.name}
-            // value={user.name}
-          />
+            />
 
           <Text style={styles.txth3}>Gender</Text>
           <TextInput
@@ -77,10 +66,7 @@ const updateProfile = ({ route }) => {
             onChangeText={setgender}
             defaultValue={user && user.gender}
           />
-        </View>
-
-        <View style={styles.altContainer}>
-          <Text style={styles.txth3}>Province</Text>
+            <Text style={styles.txth3}>Province</Text>
           <TextInput
             keyboardType="default"
             placeholder="Lusaka / Ndola"
@@ -90,13 +76,24 @@ const updateProfile = ({ route }) => {
             onChangeText={setprovince}
             defaultValue={user && user.province}
           />
-        </View>
-      </View>
+     
 
-      {/* </ImageBackground> */}
-      <TouchableOpacity style={styles.button1} onPress={update}>
-        <Text style={styles.buttonText1}>Save</Text>
+      <TouchableOpacity
+        style={{
+          backgroundColor: COLORS.black,
+          marginBottom: 20,
+          marginTop: 40,
+          borderRadius: 10,
+          paddingHorizontal: 30,
+          paddingVertical: 20,
+        }}
+        onPress={() => update()}
+      >
+        <Text style={{ color: COLORS.white, textAlign: "right", ...FONTS.h4 }}>
+       Update Profile
+        </Text>
       </TouchableOpacity>
+      
     </View>
   );
 };
@@ -105,8 +102,7 @@ const styles = StyleSheet.create({
   container: {
     width: SIZES.width,
     height: SIZES.height,
-    alignItems: "center",
-    justifyContent: "center",
+    padding: SIZES.padding*2,
     backgroundColor: "white",
   },
   buttonText1: {
@@ -165,13 +161,14 @@ const styles = StyleSheet.create({
     marginTop: "5%",
   },
   txth3: {
-    ...FONTS.h4,
-    textAlign: "center",
+    ...FONTS.h5,
+    textAlign: "left",
+    marginTop:20,
   },
   input: {
     padding: 10,
     borderRadius: 10,
-    textAlign: "center",
+    textAlign: "left",
   },
 });
 
