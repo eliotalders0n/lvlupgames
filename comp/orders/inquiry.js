@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Text, View, TextInput, TouchableOpacity } from "react-native";
+import React from "react";
+import { Text, View, TouchableOpacity } from "react-native";
 import firebase from "../../firebase";
 import { SIZES, FONTS, COLORS } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
@@ -9,13 +9,8 @@ const Inquiry = ({ route }) => {
   const navigation = useNavigation();
   let data = route.params.data;
   let games = useGetGames(data.u_id).docs;
-  let orders = 0;
   let userId = firebase.auth().currentUser.uid;
   console.log(data.id);
-
-  if (order == 3) {
-    console.log("maximum reached");
-  }
 
   function sendInquiry() {
     let inquiry = {
@@ -26,7 +21,6 @@ const Inquiry = ({ route }) => {
       genre: data.genre,
       price: data.price,
       title: data.title,
-      ordersPerUser: orders,
     };
     //  limit number of inquiries
 
