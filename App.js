@@ -3,25 +3,27 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import Tabs from "./navigation/tabs";
-import firebase_ from "./firebase";
+import firebase from "./firebase";
 import Welcome from "./comp/Welcome";
 import Inquiry from "./comp/orders/Inquiry";
 import Inquiries from "./comp/orders/Inquiries";
 import { View, Text } from "react-native";
-import updateProfile from "./comp/profile/UpdateProfile";
 import Signup from "./comp/profile/Signup";
 import Signin from "./comp/profile/Signin";
-import UserProfile from "./comp/profile/UserProfile";
-import feedback from "./comp/profile/feedback";
+
+import feedback from "./comp/profile/Feedback";
+import viewGames from "./comp/explore/ViewGames";
+import AddGames from "./comp/profile/AddGames";
+
+import updateProfile from "./comp/profile/updateProfile";
 
 const Stack = createStackNavigator();
 
 const App = () => {
   const [loaded_, setLoaded] = useState(false);
   const [loggedin, setLoggedin] = useState(false);
-
   useEffect(() => {
-    firebase_.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged((user) => {
       if (!user) {
         setLoaded(true);
         setLoggedin(false);
@@ -33,10 +35,10 @@ const App = () => {
   }, []);
 
   const [loaded] = useFonts({
-    "Roboto-Black": require("./assets/fonts/Roboto-Black.ttf"),
-    "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
-    "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
-    "Roboto-Light": require("./assets/fonts/Roboto-Light.ttf"),
+    "Roboto-Black": require("./assets/fonts/Poppins-Black.ttf"),
+    "Roboto-Bold": require("./assets/fonts/Poppins-Bold.ttf"),
+    "Roboto-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
+    "Roboto-Light": require("./assets/fonts/Poppins-Light.ttf"),
   });
 
   if (!loaded) {
@@ -78,9 +80,7 @@ const App = () => {
     );
   }
   return (
-    // <View>
-    //   <updateProfile />
-    // </View>
+
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
@@ -94,20 +94,26 @@ const App = () => {
           component={Inquiry}
           options={{ headerShown: true, title: "" }}
         />
-        <Stack.Screen
-          name="userProfile"
-          component={UserProfile}
-          options={{ headerShown: true, title: "Profile" }}
-        />
-        <Stack.Screen
-          name="updateProfile"
-          component={updateProfile}
-          options={{ headerShown: true, title: "Update Profile" }}
-        />
+ 
         <Stack.Screen
           name="Inquiries"
           component={Inquiries}
           options={{ headerShown: true, title: "Inquiries" }}
+        />
+        <Stack.Screen
+          name="viewGames"
+          component={viewGames}
+          options={{ headerShown: true, title: "View Game" }}
+        />
+        <Stack.Screen
+          name="AddGames"
+          component={AddGames}
+          options={{ headerShown: true, title: "Add Game" }}
+        />
+        <Stack.Screen
+          name="updateProfile"
+          component={updateProfile}
+          options={{ headerShown: true, title: "Update profile" }}
         />
         <Stack.Screen
           name="feedback"

@@ -6,29 +6,42 @@ import { COLORS, FONTS, SIZES } from "../constants";
 const Welcome = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      {/* <ImageBackground source={image} style={styles.bgimage}> */}
-      {/* <Image source={require("./../../assets/img.png")} style={styles.image} /> */}
-      <Text style={styles.txth1}>Welcome!</Text>
+      <Image source={require("./../assets/logo.png")} style={styles.image} />
       <Text style={styles.txth2}>
         {" "}
-        Farming should be easy and convenient and thats why we believe this
-        platform is the best place for you.
+        Game your way, drop off your console or storage device and pick it up
+        with a game of your choice.
       </Text>
-      {/* </ImageBackground> */}
-      <View style={styles.miniContainer}>
+       <View style={styles.miniContainer}>
+       <TouchableOpacity
+        style={{
+          backgroundColor: COLORS.secondary,
+          marginBottom: 10,
+          marginTop: 40,
+          borderRadius: 10,
+          paddingHorizontal: 30,
+          paddingVertical: 20,
+        }}
+        onPress={() => navigation.navigate("Register")}
+      ><Text style={{ color: COLORS.white, textAlign: "right", ...FONTS.h4 }}>
+         Register
+        </Text>
+      </TouchableOpacity>
+       
         <TouchableOpacity
-          style={styles.button1}
-          onPress={() => navigation.navigate("Register")}
-        >
-          <Text style={{ textAlign: "left" }}>Sign up</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button2}
-          onPress={() => navigation.navigate("Login")}
-        >
-          <Text style={styles.buttonText}>Log in</Text>
-        </TouchableOpacity>
+        style={{
+          backgroundColor: COLORS.black,
+          marginBottom: 0,
+          marginTop: 0,
+          borderRadius: 10,
+          paddingHorizontal: 30,
+          paddingVertical: 20,
+        }}
+        onPress={() => navigation.navigate("Login")}
+      ><Text style={{ color: COLORS.white, textAlign: "right", ...FONTS.h4 }}>
+         Login
+        </Text>
+      </TouchableOpacity>
       </View>
     </View>
   );
@@ -37,7 +50,8 @@ const Welcome = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     width: SIZES.width,
-    height: SIZES.height,
+    flex:1,
+    backgroundColor:COLORS.white,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -47,8 +61,7 @@ const styles = StyleSheet.create({
   miniContainer: {
     padding: SIZES.padding * 2,
     position: "absolute",
-    flexDirection: "row",
-    bottom: 0,
+      bottom: 0,
     left: 0,
     right: 0,
   },
@@ -72,10 +85,11 @@ const styles = StyleSheet.create({
   },
   txth1: {
     marginTop: "5%",
-    ...FONTS.h1,
+    ...FONTS.h2,
+    textAlign:"center"
   },
   txth2: {
-    ...FONTS.h5,
+    ...FONTS.h4,
     width: "60%",
     textAlign: "center",
     marginBottom: "30%",

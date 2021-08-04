@@ -9,7 +9,8 @@ import { COLORS, icons } from "../constants";
 import { Feather } from "@expo/vector-icons";
 import profile from "../comp/profile/Profile";
 import Explore from "../comp/explore/Explore";
-import Search from "../comp/search/Search.js";
+import Search from "../comp/search/Search";
+import Inquiries from "../comp/orders/Inquiries";
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +23,7 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }) => {
         style={{
           flex: 1,
           height: 60,
-          backgroundColor: "#000000",
+          backgroundColor: "#ffffff",
         }}
         onPress={onPress}
       >
@@ -35,7 +36,7 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }) => {
         style={{
           flex: 1,
           height: 60,
-          backgroundColor: "#000000",
+          backgroundColor: "#ffffff",
         }}
         activeOpacity={1}
         onPress={onPress}
@@ -83,22 +84,20 @@ const Tabs = () => {
         },
       }}
       tabBar={(props) => <CustomTabBar props={props} />}
-    >
-      <Tab.Screen
+    ><Tab.Screen
         name="Home"
         component={Search}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
-              name="search"
+              name="home"
               size={24}
-              color={focused ? COLORS.white : COLORS.secondary}
+              color={focused ? COLORS.secondary : COLORS.primary}
             />
           ),
           tabBarButton: (props) => <TabBarCustomButton {...props} />,
         }}
       />
-
       <Tab.Screen
         name="Activity"
         component={Explore}
@@ -107,12 +106,28 @@ const Tabs = () => {
             <Feather
               name="activity"
               size={24}
-              color={focused ? COLORS.white : COLORS.secondary}
+              color={focused ? COLORS.secondary : COLORS.primary}
             />
           ),
           tabBarButton: (props) => <TabBarCustomButton {...props} />,
         }}
       />
+
+<Tab.Screen
+        name="Inquiries"
+        component={Inquiries}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Feather
+              name="bell"
+              size={24}
+              color={focused ? COLORS.secondary : COLORS.primary}
+            />
+          ),
+          tabBarButton: (props) => <TabBarCustomButton {...props} />,
+        }}
+      />
+   
 
       <Tab.Screen
         name="User"
@@ -122,7 +137,7 @@ const Tabs = () => {
             <Feather
               name="user"
               size={24}
-              color={focused ? COLORS.white : COLORS.secondary}
+              color={focused ? COLORS.secondary : COLORS.primary}
               resizeMode="contain"
             />
           ),
