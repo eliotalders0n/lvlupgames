@@ -10,17 +10,30 @@ import { SIZES, COLORS, FONTS } from "../../constants";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import firebase from "../../firebase";
 
-function Signin() {
+const Signin = ({ navigation })=> {
   const [phoneNumber, setPhoneNumber] = useState("");
   const recaptchaVerifire = useRef(null);
   const [verificationId, setVerificationId] = useState(null);
   const [code, setCode] = useState("");
 
   const sendVerification = () => {
-    const phoneProvider = new firebase.auth.PhoneAuthProvider();
+
+     firebase.firestore().collection("users").where("phone","==",phoneNumber+"").get().then((doc)=>{
+     if(doc.empty)
+     {
+        navigation.navigate("Register")
+     }
+     else{
+ const phoneProvider = new firebase.auth.PhoneAuthProvider();
     phoneProvider
       .verifyPhoneNumber("+26" + phoneNumber, recaptchaVerifire.current)
       .then(setVerificationId);
+     }
+     })
+    
+    
+
+   
   };
 
   const confirmCode = () => {
